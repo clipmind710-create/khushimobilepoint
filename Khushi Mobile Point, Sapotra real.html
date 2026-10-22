@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khushi Mobile Point, Sapotra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EEF3F1; --surface:#FFFFFF; --ink:#1B2A38; --muted:#586B7C; --line:#CBD8D3;
+  --teal:#0B7F72; --amber:#F5A623; --on-teal:#FFFFFF; --hero:#1B2A38; --on-hero:#F2F7F5;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1A24; --surface:#17252F; --ink:#E8F0EE; --muted:#9BB0B8; --line:#2A3C47;
+    --teal:#35C2AF; --amber:#F5A623; --on-teal:#0F1A24; --hero:#0A121A; --on-hero:#F2F7F5;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1A24; --surface:#17252F; --ink:#E8F0EE; --muted:#9BB0B8; --line:#2A3C47;
+  --teal:#35C2AF; --amber:#F5A623; --on-teal:#0F1A24; --hero:#0A121A; --on-hero:#F2F7F5;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;padding-bottom:84px}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+h1,h2{font-family:"Sora",sans-serif;letter-spacing:-.02em;line-height:1.1;margin:0}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.hero{background:var(--hero);color:var(--on-hero);padding:34px 0 40px;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:1}
+.stage{position:absolute;right:6%;top:50%;margin-top:-150px;width:150px;height:300px;perspective:900px;z-index:0;pointer-events:none;opacity:.9}
+.stage::before{content:"";position:absolute;left:-90px;top:-40px;width:330px;height:380px;background:radial-gradient(closest-side,rgba(53,194,175,.45),transparent);filter:blur(6px)}
+.bob{width:150px;height:300px;transform-style:preserve-3d;animation:bob 4s ease-in-out infinite}
+.phone{position:relative;width:150px;height:300px;transform-style:preserve-3d;animation:spin 16s linear infinite}
+.phone>div{position:absolute}
+.fr,.bk{width:150px;height:300px;border-radius:24px;border:4px solid #3a4f5e}
+.fr{background:#05090d;transform:translateZ(9px)}
+.bk{background:linear-gradient(145deg,#3a5468,#10202b);transform:rotateY(180deg) translateZ(9px)}
+.sl,.sr{width:18px;height:276px;left:66px;top:12px;background:#3a4f5e}
+.sl{transform:rotateY(-90deg) translateZ(75px)}
+.sr{transform:rotateY(90deg) translateZ(75px)}
+.stp,.sbt{width:126px;height:18px;left:12px;background:#3a4f5e}
+.stp{top:-9px;transform:rotateX(90deg)}
+.sbt{top:291px;transform:rotateX(90deg)}
+.scr{position:absolute;inset:6px;border-radius:18px;background:linear-gradient(160deg,#0B7F72,#1B2A38 62%,#F5A623 150%);color:#fff;padding:26px 10px 10px;font-family:"Sora",sans-serif;overflow:hidden}
+.scr::before{content:"";position:absolute;top:8px;left:50%;width:38px;height:9px;margin-left:-19px;border-radius:9px;background:#05090d}
+.scr .tm{font-size:2rem;font-weight:800;line-height:1;text-align:center}
+.scr .nm{font-size:.52rem;text-align:center;opacity:.85;margin:4px 0 14px}
+.scr .ap{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.scr .ap i{aspect-ratio:1;border-radius:10px;background:rgba(255,255,255,.22)}
+.scr .ap i:nth-child(2n){background:rgba(245,166,35,.85)}
+.cam{position:absolute;top:14px;left:14px;width:50px;height:50px;border-radius:14px;background:#0a141b;border:2px solid #4b6577}
+.cam::before,.cam::after{content:"";position:absolute;width:16px;height:16px;border-radius:50%;background:radial-gradient(#35C2AF,#0a141b 70%);border:2px solid #5a7384;left:6px}
+.cam::before{top:5px}.cam::after{top:27px}
+@keyframes spin{from{transform:rotateX(-12deg) rotateY(0)}to{transform:rotateX(-12deg) rotateY(360deg)}}
+@keyframes bob{50%{transform:translateY(-14px)}}
+@media (max-width:640px){.stage{right:-10px;opacity:.38;transform:scale(.85)}}
+@media (prefers-reduced-motion:reduce){.phone{animation:none;transform:rotateX(-12deg) rotateY(-28deg)}.bob{animation:none}}
+.shop{font-weight:700;color:var(--amber);margin:0 0 18px}
+.hero h1{font-weight:800;font-size:clamp(2.1rem,8.5vw,3.6rem);max-width:15ch}
+.hero p.sub{max-width:38ch;margin:14px 0 22px;opacity:.9;font-size:1.05rem}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;padding:13px 20px;border-radius:12px;font-size:1rem}
+.btn.p{background:var(--amber);color:#1B2A38}
+.btn.s{border:2px solid var(--on-hero);color:var(--on-hero)}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:.95rem;opacity:.92}
+.facts b{display:block;font-family:"Sora",sans-serif;font-size:1.25rem;color:var(--amber)}
+section{padding:34px 0 4px}
+h2{font-weight:800;font-size:1.7rem;margin-bottom:6px}
+.lead{color:var(--muted);margin:0 0 16px}
+.est{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:18px}
+.est label{font-weight:700;display:block;margin-bottom:8px}
+.opts{display:grid;gap:8px}
+.opt{text-align:left;font:500 1rem "DM Sans",sans-serif;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.opt[aria-checked="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal);font-weight:700}
+.out{margin-top:14px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.out .amt{font-family:"Sora",sans-serif;font-weight:800;font-size:2rem;color:var(--teal)}
+.out .t{color:var(--muted)}
+.list{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 18px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row span:first-child{font-weight:500}
+.row small{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
+.pr{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.card svg{width:100%;max-width:110px;height:auto;stroke:var(--ink);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.card .a{stroke:var(--amber)}.card .t{stroke:var(--teal);fill:var(--teal)}
+.card b{display:block;margin-top:8px}.card small{color:var(--muted)}
+.btnc{font:inherit;color:inherit;cursor:pointer;width:100%}
+.btnc:hover{border-color:var(--teal)}
+.hint{display:inline-block;margin-top:8px;font-style:normal;font-size:.82rem;font-weight:700;background:var(--teal);color:var(--on-teal);padding:3px 11px;border-radius:999px}
+.ov{position:fixed;inset:0;z-index:20;background:rgba(5,10,15,.62);display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{background:var(--bg);color:var(--ink);width:100%;max-width:640px;max-height:86vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px))}
+.sh-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.sh-top h2{margin:0;font-size:1.35rem}
+.x{border:0;background:var(--surface);color:var(--ink);font:700 1.1rem "DM Sans",sans-serif;width:40px;height:40px;border-radius:50%;cursor:pointer;border:1.5px solid var(--line)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tab{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:700 .95rem "DM Sans",sans-serif;padding:8px 15px;border-radius:999px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-teal)}
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:9px}
+.mods a{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:11px 10px;text-align:center;font-weight:500}
+.mods a:hover{border-color:var(--teal)}
+.mods small{display:block;color:var(--teal);font-weight:700;font-size:.78rem;margin-top:2px}
+.hnote{color:var(--muted);font-size:.9rem;margin:0 0 12px}
+.steps{display:grid;gap:12px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px 18px 14px 58px;position:relative}
+.steps li::before{content:counter(s);position:absolute;left:16px;top:12px;width:30px;height:30px;border-radius:50%;background:var(--teal);color:var(--on-teal);display:grid;place-items:center;font-weight:800}
+.steps b{display:block}
+.steps span{color:var(--muted)}
+.note{background:var(--surface);border-left:5px solid var(--amber);border-radius:10px;padding:14px 18px}
+footer{margin-top:34px;background:var(--hero);color:var(--on-hero);padding:26px 0}
+footer p{margin:4px 0;opacity:.9}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--surface);border-top:1.5px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px}
+.bar a{flex:1;text-align:center;text-decoration:none;font-weight:700;padding:12px;border-radius:12px}
+.bar .c{background:var(--teal);color:var(--on-teal)}
+.bar .w{background:#1FA855;color:#fff}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="stage" aria-hidden="true">
+    <div class="bob"><div class="phone">
+      <div class="fr"><div class="scr"><div class="tm">10:09</div><div class="nm">Khushi Mobile Point</div><div class="ap"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      <div class="bk"><div class="cam"></div></div>
+      <div class="sl"></div><div class="sr"></div><div class="stp"></div><div class="sbt"></div>
+    </div></div>
+  </div>
+  <div class="wrap">
+    <p class="shop">Khushi Mobile Point, Sapotra</p>
+    <h1>Phone kharab? Aaj hi theek karwao.</h1>
+    <p class="sub">Screen, battery, charging port aur water damage ki repair, aur naye keypad phone bhi. Sahi daam me.</p>
+    <div class="btns">
+      <a class="btn p" href="tel:+919983161633">Abhi call karein</a>
+      <a class="btn s" href="#rates">Rate list dekhein</a>
+      <a class="btn s" href="#keypad">Keypad phone</a>
+    </div>
+    <div class="facts">
+      <div><b>30 min</b>Zyada tar repair</div>
+      <div><b>Naye phone</b>Keypad phone bhi milte hain</div>
+      <div><b>Free</b>Phone check-up</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Kitna kharcha lagega?</h2>
+    <p class="lead">Problem chuno, shuruaati rate turant dikhega.</p>
+    <div class="est">
+      <label id="plab">Phone me kya problem hai?</label>
+      <div class="opts" id="prob" role="radiogroup" aria-labelledby="plab"></div>
+      <div class="out"><span class="amt" id="amt"></span><span class="t" id="tm"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Hum kya theek karte hain</h2>
+    <p class="lead">Display se lekar battery aur keypad phone tak.</p>
+    <div class="gal">
+      <button class="card btnc" id="openDisp" type="button" aria-haspopup="dialog"><svg viewBox="0 0 120 120" role="img" aria-label="Toota hua phone display"><rect x="34" y="8" width="52" height="104" rx="9"/><path class="a" d="M60 16 L52 44 L68 56 L50 84 L62 104"/><path class="a" d="M52 44 L38 52 M68 56 L82 50"/><circle cx="60" cy="104" r="2"/></svg><b>Display / Screen</b><small>Touch aur screen repair</small><em class="hint">Sab models dekhein</em></button>
+      <button class="card btnc" id="openBatt" type="button" aria-haspopup="dialog"><svg viewBox="0 0 120 120" role="img" aria-label="Phone battery"><rect x="14" y="36" width="84" height="48" rx="8"/><rect x="98" y="50" width="9" height="20" rx="2"/><rect class="t" x="22" y="44" width="16" height="32" rx="3"/><rect class="t" x="43" y="44" width="16" height="32" rx="3"/><rect class="t" x="64" y="44" width="16" height="32" rx="3"/></svg><b>Battery</b><small>Nayi battery lagwayein</small><em class="hint">Sab models dekhein</em></button>
+      <button class="card btnc" id="openKey" type="button" aria-haspopup="dialog"><svg viewBox="0 0 120 120" role="img" aria-label="Keypad phone"><rect x="32" y="6" width="56" height="108" rx="9"/><rect x="40" y="14" width="40" height="26" rx="3"/><circle cx="46" cy="56" r="4"/><circle cx="60" cy="56" r="4"/><circle cx="74" cy="56" r="4"/><circle cx="46" cy="72" r="4"/><circle cx="60" cy="72" r="4"/><circle cx="74" cy="72" r="4"/><circle cx="46" cy="88" r="4"/><circle cx="60" cy="88" r="4"/><circle cx="74" cy="88" r="4"/><circle cx="60" cy="103" r="3"/></svg><b>Keypad phone</b><small>Repair aur nayi bikri</small><em class="hint">Sab models dekhein</em></button>
+      <div class="card"><svg viewBox="0 0 120 120" role="img" aria-label="Charging port"><rect x="36" y="30" width="48" height="34" rx="6"/><path d="M48 30 V18 M72 30 V18"/><path class="a" d="M60 64 V104"/><path d="M52 74 H68"/></svg><b>Charging port</b><small>Charging nahi hone par</small></div>
+    </div>
+  </section>
+
+  <section id="rates">
+    <h2>Rate list</h2>
+    <p class="lead">Prices shuruaati hain. Phone ke model ke hisaab se thoda upar-neeche ho sakte hain.</p>
+    <div class="list" id="list"></div>
+  </section>
+
+  <section id="keypad">
+    <h2>Keypad phone bikri ke liye</h2>
+    <p class="lead">Naye keypad phone, dukaan pe dekh kar le sakte ho. Stock aur model ke liye call ya WhatsApp karein.</p>
+    <div class="list">
+      <div class="row"><span>Basic Dual SIM keypad<small>Sasta aur simple</small></span><span class="pr">₹799</span></div>
+      <div class="row"><span>Torch + FM keypad<small>Torch aur radio ke saath</small></span><span class="pr">₹999</span></div>
+      <div class="row"><span>Bada button keypad<small>Bade log ke liye, bade button aur badi awaaz</small></span><span class="pr">₹1,199</span></div>
+      <div class="row"><span>Big battery keypad<small>Kai din chalne wali battery</small></span><span class="pr">₹1,299</span></div>
+      <div class="row"><span>Nokia keypad<small>Mazboot aur bharose wala</small></span><span class="pr">₹1,499</span></div>
+      <div class="row"><span>Camera + Bluetooth keypad<small>Photo aur gaane ke liye</small></span><span class="pr">₹1,599</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Repair kaise hoti hai</h2>
+    <ol class="steps">
+      <li><b>Phone dikhao</b><span>Dukaan pe aao, hum free me check karenge.</span></li>
+      <li><b>Pakka rate suno</b><span>Repair se pehle poora kharcha bata dete hain. Pasand na aaye to kuch nahi dena.</span></li>
+      <li><b>Phone wapas lo</b><span>Repair ke baad aapke saamne test karke phone dete hain.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="note"><b>Zaroori baat:</b> repair se pehle apna zaroori data (photos, contacts) backup kar lein. Water damage me phone ko charge na karein aur seedha dukaan le aayein.</div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2 style="font-size:1.3rem;margin-bottom:8px">Khushi Mobile Point, Sapotra</h2>
+    <p>Malik: Ummed Meena</p>
+    <p>Pata: Gajupura, Karoli, Sapotra Mod</p>
+    <p>Phone: <a href="tel:+919983161633" style="color:inherit">99831 61633</a></p>
+    <p>Khulne ka samay: 10:00 AM – 9:00 PM, roz</p>
+  </div>
+</footer>
+
+<div class="ov" id="ov" role="dialog" aria-modal="true" aria-labelledby="ovt">
+  <div class="sheet">
+    <div class="sh-top"><h2 id="ovt">Display models</h2><button class="x" id="cl" type="button" aria-label="Band karein">✕</button></div>
+    <div class="tabs" id="tabs"></div>
+    <p class="hnote">Apna model dabayein, WhatsApp pe seedha rate pooch sakte ho. Model list me na ho to bhi call karein.</p>
+    <div class="mods" id="mods"></div>
+  </div>
+</div>
+
+<div class="bar">
+  <a class="c" href="tel:+919983161633">Call karein</a>
+  <a class="w" href="https://wa.me/919983161633">WhatsApp</a>
+</div>
+
+<script>
+// Rates yahan edit karein: problem, starting price (₹), time
+var R = [
+  {n:"Screen toot gayi / display kharab",p:800,t:"30–60 min",d:"Touch ya display band"},
+  {n:"Battery jaldi khatam hoti hai",p:500,t:"20–30 min",d:"Nayi battery"},
+  {n:"Charging nahi ho raha",p:400,t:"30 min",d:"Charging port repair"},
+  {n:"Speaker ya mic kharab",p:350,t:"30 min",d:"Awaaz nahi aati"},
+  {n:"Camera kharab",p:700,t:"1 ghanta",d:"Front ya back camera"},
+  {n:"Back glass toota",p:500,t:"1 ghanta",d:"Back panel replace"},
+  {n:"Paani gir gaya (water damage)",p:600,t:"1–2 din",d:"Safai aur check-up"},
+  {n:"Phone hang / software problem",p:300,t:"30–60 min",d:"Flash ya software update"},
+  {n:"Tempered glass lagwana",p:100,t:"5 min",d:"Screen guard"}
+];
+var sel = document.getElementById("prob"), cur = 0;
+function drawOpts(){
+  sel.innerHTML = R.map(function(r,i){
+    return '<button type="button" class="opt" role="radio" aria-checked="'+(i===cur)+'" data-i="'+i+'">'+r.n+'</button>';
+  }).join("");
+}
+function show(){
+  var r = R[cur];
+  document.getElementById("amt").textContent = "₹" + r.p + " se shuru";
+  document.getElementById("tm").textContent = "Samay: " + r.t;
+}
+sel.addEventListener("click", function(e){
+  var b = e.target.closest(".opt"); if(!b) return;
+  cur = +b.getAttribute("data-i"); drawOpts(); show();
+});
+drawOpts(); show();
+document.getElementById("list").innerHTML = R.map(function(r){
+  return '<div class="row"><span>'+r.d+'<small>'+r.n+'</small></span><span class="pr">₹'+r.p+'+</span></div>';
+}).join("");
+
+// Display models: brand ke hisaab se. Naya model add karne ke liye list me naam likh dein.
+var BR = {
+  "Vivo":["Y12","Y15","Y20","Y21","Y22","Y27","V20","V23","V25","T1"],
+  "Oppo":["A3s","A5s","A15","A16","A31","A53","A54","A57","F19","Reno 5"],
+  "Realme":["C3","C11","C12","C15","C21","C25","C33","Narzo 30","Narzo 50","8i"],
+  "Samsung":["M01","M02","M12","M31","A12","A21s","A32","A50","A52","F12"],
+  "Poco":["C3","C31","M2","M3","M4 Pro","X2","X3","X4 Pro","F1","F3"],
+  "Mi / Redmi":["Redmi 6A","Redmi 8","Redmi 9A","Redmi 9i","Redmi 9 Prime","Redmi 10","Note 7","Note 8","Note 9","Note 10"]
+};
+var ov = document.getElementById("ov"), tabsEl = document.getElementById("tabs"), modsEl = document.getElementById("mods"), curB = "Vivo";
+function drawTabs(){
+  tabsEl.innerHTML = Object.keys(data()).map(function(b){
+    return '<button class="tab" type="button" aria-pressed="'+(b===curB)+'" data-b="'+b+'">'+b+'</button>';
+  }).join("");
+}
+function drawMods(){
+  modsEl.innerHTML = data()[curB].map(function(m){
+    var part = kind==="battery" ? "battery" : "display";
+    var msg = kind==="keypad" ? "Hello, mujhe "+curB+" "+m+" keypad phone ke baare me puchna hai (nayi bikri ya repair). Rate aur stock bata dijiye." : "Hello, mujhe "+curB+" "+m+" ka "+part+" change karwana hai. Rate bata dijiye.";
+    return '<a href="https://wa.me/919983161633?text='+encodeURIComponent(msg)+'">'+curB.split(" ")[0]+' '+m+'<small>Rate pooche</small></a>';
+  }).join("");
+}
+var kind = "display", opener = null;
+var BK = {
+  "Nokia":["105","106","110","125","150","215 4G","225 4G","105 4G"],
+  "Itel":["Magic 1","Magic 2","Magic 2 4G","it2163","it2173","it5026","it5030","it9210"],
+  "Kechaoda":["K10","K22","K25","K27","K35","K55","K66","K115"],
+  "Karbonn":["K9 Jumbo","K9 Kool","KX1","KX3","KX21","K140 Kool","K451+"],
+  "Lava":["A1","A3","A5","A7","A9","Pulse","Gem","Hero"]
+};
+function data(){ return kind==="keypad" ? BK : BR; }
+function openOv(k, el){ kind = k; opener = el; document.getElementById("ovt").textContent = ({battery:"Battery models",keypad:"Keypad phone models"}[k] || "Display models"); curB = Object.keys(data())[0]; drawTabs(); drawMods(); ov.classList.add("on"); document.getElementById("cl").focus(); }
+function closeOv(){ ov.classList.remove("on"); if(opener) opener.focus(); }
+tabsEl.addEventListener("click", function(e){
+  var t = e.target.closest(".tab"); if(!t) return;
+  curB = t.getAttribute("data-b"); drawTabs(); drawMods();
+});
+var od = document.getElementById("openDisp"), ob = document.getElementById("openBatt");
+od.addEventListener("click", function(){ openOv("display", od); });
+ob.addEventListener("click", function(){ openOv("battery", ob); });
+var ok = document.getElementById("openKey");
+ok.addEventListener("click", function(){ openOv("keypad", ok); });
+document.getElementById("cl").addEventListener("click", closeOv);
+ov.addEventListener("click", function(e){ if(e.target===ov) closeOv(); });
+document.addEventListener("keydown", function(e){ if(e.key==="Escape" && ov.classList.contains("on")) closeOv(); });
+</script>
+</body>
+</html>
