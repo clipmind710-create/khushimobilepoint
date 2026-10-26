@@ -60,8 +60,8 @@ footer{text-align:center;padding:20px 20px 90px;background:#222;color:#fff;font-
 </style></head><body>
 <div class="track" id="track">
 <div class="scene">
-<video id="va" class="on" muted playsinline preload="auto" src="disassemble.mp4"></video>
-<video id="vb" muted playsinline preload="auto" src="assemble.mp4"></video>
+<video id="va" class="on" muted playsinline preload="auto" data-src="disassemble"></video>
+<video id="vb" muted playsinline preload="auto" data-src="assemble"></video>
 </div>
 <div class="content" id="content">
 <div class="intro" id="intro"><div class="eyebrow">KHUSHI MOBILE POINT</div>
@@ -92,7 +92,7 @@ if(matchMedia('(max-width:609px),(max-aspect-ratio:1/1)').matches){b=last.offset
 end=b+.75*vh;track.style.height=(end+vh)+'px';track.dataset.knee=b/end;update()}
 function update(){
 var top=track.getBoundingClientRect().top+scrollY,p=clamp((scrollY-top)/end),knee=+track.dataset.knee||.8,
-q=p<knee?p/knee*.46:.46+(p-knee)/(1-knee)*.54;tgt=q}
+tgt=p}
 function seek(v,t){if(!v.seeking&&Math.abs(v.currentTime-t)>1/60)v.currentTime=t}
 function tick(){
 cur+=(tgt-cur)*.22;
@@ -101,7 +101,8 @@ local=firstHalf?cur/.5:(cur-.5)/.5;
 v.classList.add('on');o.classList.remove('on');
 if(v.readyState>=1)seek(v,clamp(local)*d);
 requestAnimationFrame(tick)}
-va.addEventListener('seeked',function(){});
+var small=innerWidth<=900||(navigator.connection&&navigator.connection.saveData);
+[va,vb].forEach(function(v){v.src=v.dataset.src+(small?'-hd':'')+'.mp4';v.load()});
 addEventListener('scroll',update,{passive:true});addEventListener('resize',layout);
 addEventListener('load',layout);layout();requestAnimationFrame(tick);
 })();
