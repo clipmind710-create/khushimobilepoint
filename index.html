@@ -99,10 +99,13 @@ cur+=(tgt-cur)*.22;
 var firstHalf=cur<.5,v=firstHalf?va:vb,o=firstHalf?vb:va,d=(v.duration||8)-1/48,
 local=firstHalf?cur/.5:(cur-.5)/.5;
 v.classList.add('on');o.classList.remove('on');
-if(v.readyState>=1)seek(v,clamp(local)*d);
+if(v.readyState>=1||v.duration)seek(v,clamp(local)*d);
 requestAnimationFrame(tick)}
 var small=innerWidth<=900||(navigator.connection&&navigator.connection.saveData);
-[va,vb].forEach(function(v){v.src=v.dataset.src+(small?'-hd':'')+'.mp4';v.load()});
+[va,vb].forEach(function(v){v.muted=true;v.defaultMuted=true;v.setAttribute('playsinline','');v.src=v.dataset.src+(small?'-hd':'')+'.mp4';v.load()});
+function unlock(){[va,vb].forEach(function(v){var p=v.play();if(p&&p.then)p.then(function(){v.pause()}).catch(function(){})})}
+[va,vb].forEach(function(v){v.addEventListener('loadedmetadata',unlock)});
+['touchstart','pointerdown','scroll','click'].forEach(function(e){addEventListener(e,function f(){unlock();removeEventListener(e,f)},{passive:true})});
 addEventListener('scroll',update,{passive:true});addEventListener('resize',layout);
 addEventListener('load',layout);layout();requestAnimationFrame(tick);
 })();
